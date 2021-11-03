@@ -6,6 +6,7 @@ import {
 } from "react-native-gesture-handler";
 import colors from "../constants/colors";
 import { Dimensions } from "react-native";
+import { FontAwesome, SimpleLineIcons } from "@expo/vector-icons";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -39,19 +40,41 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.paymentButton} activeOpacity={0.7}>
-          <Text style={styles.buttonText}>asddas</Text>
+          <Text style={styles.buttonText}>Add payment method</Text>
         </TouchableOpacity>
       </View>
       <View>
-        <Text style={styles.title}>Watchlist</Text>
+        <Text style={[styles.title, styles.watchlist]}>Watchlist</Text>
         <Pressable
           onPress={() => navigation.navigate("Watchlist")}
-          style={styles.watchlist}
+          style={styles.card}
         >
-          <Text>asd</Text>
+          <View style={styles.cardItemIcon}>
+            <FontAwesome
+              name="btc"
+              size={36}
+              color="white"
+              style={[
+                {
+                  transform: [{ skewY: "20deg" }],
+                },
+              ]}
+            />
+          </View>
+          <View style={styles.cardItemName}>
+            <Text style={styles.cardItemNameTitle}>Bitcoin</Text>
+            <Text style={styles.cardItemNameSub}>Btc</Text>
+          </View>
+          <View style={styles.cardItemLine}>
+            <SimpleLineIcons name="graph" size={24} color="black" />
+          </View>
+          <View style={styles.cardItemPrice}>
+            <Text>$54,223.15</Text>
+            <Text>+0.10%</Text>
+          </View>
         </Pressable>
       </View>
-      <View>
+      <View style={styles.topMovers}>
         <Text style={styles.title}>Top Movers</Text>
       </View>
     </View>
@@ -88,23 +111,62 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   paymentButton: {
-    height: 40,
+    height: 50,
     width: windowWidth / 1.2,
     borderRadius: 10,
     backgroundColor: colors.primary,
     marginTop: 20,
+    alignItems: "center",
+    padding: 12,
   },
-
   buttonText: {
-    fontSize: 15,
+    fontSize: 18,
+    fontWeight: "700",
     color: "white",
-    height: "100%",
+  },
+  watchlist: {
+    marginStart: 30,
+    marginTop: 20,
+    marginBottom: 30,
+  },
+  card: {
+    width: windowWidth / 1.2,
+    marginStart: 30,
+    backgroundColor: "white",
+    borderRadius: 10,
+    marginVertical: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+  },
+  cardItemIcon: {
+    backgroundColor: "#F8A33C",
+    borderRadius: 50,
+    width: 50,
+    height: 50,
     textAlign: "center",
     alignItems: "center",
-    height: "100%",
+    padding: 5,
   },
-
-  watchlist: {},
+  cardItemName: {
+    flex: 1,
+    paddingStart: 15,
+  },
+  cardItemNameTitle: {
+    fontSize: 18,
+  },
+  cardItemNameSub: {
+    textTransform: "uppercase",
+  },
+  cardItemLine: {},
+  cardItemPrice: {},
+  topMovers: {
+    marginStart: 30,
+    marginTop: 20,
+  },
 });
 
 export default HomeScreen;
