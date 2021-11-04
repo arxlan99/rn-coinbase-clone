@@ -30,7 +30,7 @@ const navTabBarOptions = {
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home Screen" component={HomeScreen} />
+      <HomeStack.Screen name="Home " component={HomeScreen} />
       <HomeStack.Screen name="PriceDetail" component={PriceDetailScreen} />
     </HomeStack.Navigator>
   );
@@ -41,7 +41,7 @@ const SettingsStack = createNativeStackNavigator();
 function SettingsStackScreen() {
   return (
     <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Settings Screen" component={SettingsScreen} />
+      <SettingsStack.Screen name="Settings " component={SettingsScreen} />
     </SettingsStack.Navigator>
   );
 }
@@ -51,10 +51,7 @@ const PortfolioStack = createNativeStackNavigator();
 function PortfolioStackScreen() {
   return (
     <PortfolioStack.Navigator>
-      <PortfolioStack.Screen
-        name="Portfolio Screen"
-        component={PortfolioScreen}
-      />
+      <PortfolioStack.Screen name="Portfolio " component={PortfolioScreen} />
     </PortfolioStack.Navigator>
   );
 }
