@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { View, Text, Button, StyleSheet, Image, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Image,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import {
   TouchableHighlight,
   TouchableOpacity,
@@ -7,6 +15,9 @@ import {
 import colors from "../constants/colors";
 import { Dimensions } from "react-native";
 import { FontAwesome, SimpleLineIcons } from "@expo/vector-icons";
+import PriceChangeCard from "../components/UI/PriceChangeCard";
+
+import { changePriceData } from "../data";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -30,54 +41,62 @@ const HomeScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={require("../assets/images/wallet.png")} />
-      </View>
-      <View style={styles.headerContainer}>
-        <Text style={styles.title}>Welcome to Coinbase !</Text>
-        <Text style={styles.subTitle}>Make your first investment today</Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.paymentButton} activeOpacity={0.7}>
-          <Text style={styles.buttonText}>Add payment method</Text>
-        </TouchableOpacity>
-      </View>
+    <ScrollView style={styles.container}>
       <View>
-        <Text style={[styles.title, styles.watchlist]}>Watchlist</Text>
-        <Pressable
-          onPress={() => navigation.navigate("Watchlist")}
-          style={styles.card}
-        >
-          <View style={styles.cardItemIcon}>
-            <FontAwesome
-              name="btc"
-              size={36}
-              color="white"
-              style={[
-                {
-                  transform: [{ skewY: "20deg" }],
-                },
-              ]}
-            />
-          </View>
-          <View style={styles.cardItemName}>
-            <Text style={styles.cardItemNameTitle}>Bitcoin</Text>
-            <Text style={styles.cardItemNameSub}>Btc</Text>
-          </View>
-          <View style={styles.cardItemLine}>
-            <SimpleLineIcons name="graph" size={24} color="black" />
-          </View>
-          <View style={styles.cardItemPrice}>
-            <Text>$54,223.15</Text>
-            <Text>+0.10%</Text>
-          </View>
-        </Pressable>
+        <View style={styles.imageContainer}>
+          <Image source={require("../assets/images/wallet.png")} />
+        </View>
+        <View style={styles.headerContainer}>
+          <Text style={styles.title}>Welcome to Coinbase !</Text>
+          <Text style={styles.subTitle}>Make your first investment today</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.paymentButton} activeOpacity={0.7}>
+            <Text style={styles.buttonText}>Add payment method</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={[styles.title, styles.watchlist]}>Watchlist</Text>
+          <Pressable
+            onPress={() => navigation.navigate("Watchlist")}
+            style={styles.card}
+          >
+            <View style={styles.cardItemIcon}>
+              <FontAwesome
+                name="btc"
+                size={36}
+                color="white"
+                style={[
+                  {
+                    transform: [{ skewY: "20deg" }],
+                  },
+                ]}
+              />
+            </View>
+            <View style={styles.cardItemName}>
+              <Text style={styles.cardItemNameTitle}>Bitcoin</Text>
+              <Text style={styles.cardItemNameSub}>Btc</Text>
+            </View>
+            <View style={styles.cardItemLine}>
+              <SimpleLineIcons name="graph" size={24} color="black" />
+            </View>
+            <View style={styles.cardItemPrice}>
+              <Text>$54,223.15</Text>
+              <Text>+0.10%</Text>
+            </View>
+          </Pressable>
+        </View>
+        <View style={styles.topMovers}>
+          <Text style={styles.title}>Top Movers</Text>
+        </View>
+
+        <View style={styles.textListContainer}>
+          {changePriceData.map((item, index) => (
+            <PriceChangeCard key={index} price="$0.00002613" change="-24.49%" />
+          ))}
+        </View>
       </View>
-      <View style={styles.topMovers}>
-        <Text style={styles.title}>Top Movers</Text>
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -85,6 +104,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
+    padding: 30,
   },
   imageContainer: {
     justifyContent: "center",
@@ -125,13 +145,11 @@ const styles = StyleSheet.create({
     color: "white",
   },
   watchlist: {
-    marginStart: 30,
     marginTop: 20,
     marginBottom: 30,
   },
   card: {
     width: windowWidth / 1.2,
-    marginStart: 30,
     backgroundColor: "white",
     borderRadius: 10,
     marginVertical: 10,
@@ -166,6 +184,10 @@ const styles = StyleSheet.create({
   topMovers: {
     marginStart: 30,
     marginTop: 20,
+  },
+
+  textListContainer: {
+    flexDirection: "row",
   },
 });
 
