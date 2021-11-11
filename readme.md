@@ -1,5 +1,6 @@
 # React Native Coinbase Clone
-This is an coinbase clone project. Application has just page designs for now.
+This is a coinbase clone project. Application has just page designs for now.
+You can reach this design from <a href="https://www.figma.com/community/file/1040741698249360396" /> Figma community. </a>
 
 <img src="gif/animation.gif" height="500" >
 
