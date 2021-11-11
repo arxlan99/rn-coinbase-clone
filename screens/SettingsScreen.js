@@ -8,7 +8,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const SettingsScreen = () => {
   return (
-    <ScrollView>
+    <ScrollView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View>
           <Text style={styles.email}>john_doe@gmail.com</Text>
@@ -30,7 +30,7 @@ const SettingsScreen = () => {
           <Text style={[styles.title, { marginBottom: 20 }]}>
             Payment Methods
           </Text>
-          <TransparentButton text="Add a payment method" />
+          <TransparentButton text="Add a payment method" textColor="" />
         </View>
         <View style={{ marginTop: 40 }}>
           <Text style={[styles.title, { marginBottom: 20 }]}>Account</Text>
@@ -52,7 +52,7 @@ const SettingsScreen = () => {
           </View>
         </View>
         <View style={{ marginTop: 20 }}>
-          <TransparentButton color="red" text="Sign out" />
+          <TransparentButton textColor="#FF0000" text="Sign out" />
         </View>
       </View>
     </ScrollView>
@@ -61,7 +61,6 @@ const SettingsScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
     padding: 20,
   },

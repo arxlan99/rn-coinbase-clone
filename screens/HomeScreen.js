@@ -18,6 +18,8 @@ import { FontAwesome, SimpleLineIcons } from "@expo/vector-icons";
 import PriceChangeCard from "../components/UI/PriceChangeCard";
 
 import { changePriceData } from "../data";
+import IntroCard from "../components/UI/IntroCard";
+import { color } from "react-native-reanimated";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -41,8 +43,8 @@ const HomeScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <ScrollView style={styles.container}>
-      <View>
+    <ScrollView style={{ flex: 1 }}>
+      <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image source={require("../assets/images/wallet.png")} />
         </View>
@@ -90,11 +92,46 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.title}>Top Movers</Text>
         </View>
 
-        <View style={styles.textListContainer}>
-          {changePriceData.map((item, index) => (
-            <PriceChangeCard key={index} price="$0.00002613" change="-24.49%" />
-          ))}
+        <ScrollView style={{ flex: 1 }} horizontal={true}>
+          <View style={styles.textListContainer}>
+            {changePriceData.map((item, index) => (
+              <View key={index} style={styles.infoCard}>
+                <PriceChangeCard price="$0.00002613" change="-24.49%" />
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+        <View style={styles.learnTitleContainer}>
+          <Text style={styles.learnText}>Learn about Fetch.ai</Text>
         </View>
+        <View style={styles.lessonContainer}>
+          <FontAwesome name="circle" size={52} color="black" />
+          <View>
+            <Text style={styles.learnText}>Fetch.ai</Text>
+            <Text style={[styles.learnText, { color: colors.fontGrey }]}>
+              Earn $3 FET
+            </Text>
+          </View>
+          <Text style={styles.lessonButton}>Start lesson</Text>
+        </View>
+        <View>
+          <Text style={{ color: colors.fontGrey, fontSize: 18, marginTop: 10 }}>
+            A protocol for automating tasks with AI.
+          </Text>
+        </View>
+        <ScrollView style={{ flex: 1 }} horizontal={true}>
+          <View style={styles.textListContainer}>
+            <View style={styles.infoCard}>
+              <IntroCard />
+            </View>
+            <View style={styles.infoCard}>
+              <IntroCard />
+            </View>
+            <View>
+              <IntroCard />
+            </View>
+          </View>
+        </ScrollView>
       </View>
     </ScrollView>
   );
@@ -182,12 +219,31 @@ const styles = StyleSheet.create({
   cardItemLine: {},
   cardItemPrice: {},
   topMovers: {
-    marginStart: 30,
     marginTop: 20,
   },
 
   textListContainer: {
     flexDirection: "row",
+    padding: 5,
+  },
+  learnTitleContainer: {
+    marginTop: 40,
+  },
+  learnText: {
+    fontSize: 23,
+  },
+  lessonContainer: {
+    marginTop: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  lessonButton: {
+    fontSize: 20,
+    color: "#0851EC",
+  },
+  infoCard: {
+    marginRight: 20,
   },
 });
 

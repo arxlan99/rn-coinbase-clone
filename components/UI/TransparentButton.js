@@ -9,7 +9,12 @@ const TransparentButton = (props) => {
   return (
     <Pressable style={styles.card}>
       <View style={styles.textContainer}>
-        <Text style={[styles.text, { color: props.color ? props.color : "" }]}>
+        <Text
+          style={[
+            styles.text,
+            { color: props.textColor ? props.textColor : "black" },
+          ]}
+        >
           {props.text}
         </Text>
       </View>
@@ -23,7 +28,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
-    elevation: 2,
+    elevation: 4,
     flexDirection: "row",
     justifyContent: "center",
     padding: 10,
