@@ -1,5 +1,4 @@
 # React Native Coinbase Clone
-## Test
 This is an coinbase clone project. Application has just page designs for now.
 
 <img src="gif/animation.gif" height="500" >
